@@ -4,6 +4,9 @@ function makeOperation(operationCode) {
   if (operationCode === "+") {
     window.alert("+");
   }
+  else if (operationCode === "-"){
+      window.alert("-");
+  }
 }
 
 function onOperationButtonClick(eventObject) {
