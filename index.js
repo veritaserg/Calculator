@@ -7,6 +7,9 @@ function makeOperation(operationCode) {
   else if (operationCode === "-"){
       window.alert("-");
   }
+  else if (operationCode == "*"){
+      window.alert("*")
+  }
 }
 
 function onOperationButtonClick(eventObject) {
