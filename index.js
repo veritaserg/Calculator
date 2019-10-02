@@ -1,36 +1,19 @@
-var buttonPlus = document.getElementById("buttonPlus");
-var buttonMinuss = document.getElementById("buttonMinus");
-var buttonMultiply = document.getElementById("buttonMultiply");
-var buttonDevide = document.getElementById("buttonDevide");
-var numberOne = document.getElementById("numberOne");
-var numberTwo = document.getElementById("numberTwo");
+var allElement = document.getElementsByClassName("name-button");
 
-
-
-
-function onButtonPlusClick(){
-    var one = Number(numberOne.value);
-    var two = Number(numberTwo.value);
-    
-console.log(one + two);
-}
-function onButtonMinusClick(){
-console.log("onButtonMinusClick")
-}
-function onButtonMultiplyClick(){
-console.log("onButtonMultiplyClick")
-}
-function onButtonDevideClick(){
-console.log("onButtonDevideClick")
+function makeOperation(operationCode) {
+  if (operationCode === "+") {
+    window.alert("+");
+  }
 }
 
-buttonPlus.addEventListener("click",onButtonPlusClick);
-
-buttonMinuss.addEventListener("click",onButtonMinusClick);
-
-buttonMultiply.addEventListener("click",onButtonMultiplyClick);
-
-buttonDevide.addEventListener("click",onButtonDevideClick);
-
+function onOperationButtonClick(eventObject) {
+  var clickedElement = eventObject.currentTarget;
+  var operation = clickedElement.innerHTML;
+  makeOperation(operation);
+}
+for (let index = 0; index < allElement.length; index++) {
+  var button = allElement[index];
+  button.addEventListener("click", onOperationButtonClick);
+}
 
 
