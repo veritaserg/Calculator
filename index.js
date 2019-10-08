@@ -1,25 +1,18 @@
-var allElement = document.getElementsByClassName("name-button");
+let allElement = document.getElementsByClassName("name-button");
+let result = document.getElementById("return-result")
 
 function makeOperation(operationCode) {
-  if (operationCode === "+") {
-    window.alert("+");
-  }
-  else if (operationCode === "-"){
-      window.alert("-");
-  }
-  else if (operationCode == "*"){
-      window.alert("*")
-  }
+  result.value = operationCode;
+  
 }
 
 function onOperationButtonClick(eventObject) {
-  var clickedElement = eventObject.currentTarget;
-  var operation = clickedElement.innerHTML;
+  let clickedElement = eventObject.currentTarget;
+  let operation = clickedElement.innerHTML;
+
   makeOperation(operation);
 }
 for (let index = 0; index < allElement.length; index++) {
-  var button = allElement[index];
+  let button = allElement[index];
   button.addEventListener("click", onOperationButtonClick);
 }
-
-

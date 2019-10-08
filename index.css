@@ -19,7 +19,20 @@
 .input input {
   height: 30px;
 }
+.input output {
+    height: 30px;
+    display: inline;
+}
 .input .input-blok {
   display: inline-block;
   padding: 20px;
 }
+input[type = text] {
+    position: relative;
+    display: block;
+    width: 90%;
+    margin: 5px auto;
+    font-size: 20px;
+    padding: 10px;
+    box-shadow: 4px 0px 12px black inset;
+  }
