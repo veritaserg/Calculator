@@ -1,23 +1,36 @@
 "use strict";
 let allElement = document.getElementsByClassName("name-button");
 let result = document.getElementById("return-result");
-let operation = 0;
+let numbers = "";
+let listOperations = [];
+
+let input = "";
 let res;
 
 function makeOperation(operationCode) {
-  operation = operation + operationCode;
-  makeResult(operationCode);
-  if (operationCode === "=") {
-    operation = Number(operation);
+  if (Number.isFinite(Number(operationCode))) {
+    numbers = numbers + operationCode;
+    input = input + operationCode;
+    result.value = input;
+  } else {
+    listOperations.push(Number(numbers));
+    input = input + operationCode;
+    numbers = "";
+    listOperations.push(operationCode);
+    result.value = input;
   }
-  result.value = operation;
+
+  // operation = operation + operationCode;
+  // makeResult(operationCode);
+  // if (operationCode === "=") {
+  //   operation = Number(operation);
+  // }
+  // result.value = operation;
 }
+
 function makeResult(operationCode) {
-  res = Number(operationCode)
-
+  res = Number(operationCode);
 }
-
-
 
 function onOperationButtonClick(eventObject) {
   let clickedElement = eventObject.currentTarget;
@@ -29,6 +42,3 @@ for (let index = 0; index < allElement.length; index++) {
   let button = allElement[index];
   button.addEventListener("click", onOperationButtonClick);
 }
-
-
-
