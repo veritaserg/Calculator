@@ -3,39 +3,72 @@ let allElement = document.getElementsByClassName("name-button");
 let result = document.getElementById("return-result");
 let numbers = "";
 let listOperations = [];
-
 let input = "";
-let res;
 
 function makeOperation(operationCode) {
   if (Number.isFinite(Number(operationCode))) {
     numbers = numbers + operationCode;
     input = input + operationCode;
     result.value = input;
-  } else {
+  } else if (operationCode === "=") {
+    listOperations.push(Number(numbers));
+    operationMultiplayAndDevide();
+    operationPlusAndMinus();
+    result.value = input;
+    clean();
+  } else if (operationCode !== "C") {
     listOperations.push(Number(numbers));
     input = input + operationCode;
     numbers = "";
     listOperations.push(operationCode);
     result.value = input;
+  } else {
+    clean();
+    result.value = input;
   }
-
-  // operation = operation + operationCode;
-  // makeResult(operationCode);
-  // if (operationCode === "=") {
-  //   operation = Number(operation);
-  // }
-  // result.value = operation;
 }
 
-function makeResult(operationCode) {
-  res = Number(operationCode);
+function clean() {
+  input = "";
+  numbers = "";
+  listOperations = [];
+}
+function operationMultiplayAndDevide() {
+  for (let i = 0; i < listOperations.length; i++) {
+    if (!Number.isFinite(Number(listOperations[i]))) {
+      if (listOperations[i] === "*") {
+        input = Number(listOperations[i - 1]) * Number(listOperations[i + 1]);
+        listOperations[i + 1] = input;
+        listOperations.splice(i - 1, 2);
+        i = 0;
+      }
+      if (listOperations[i] === "/") {
+        input = Number(listOperations[i - 1]) / Number(listOperations[i + 1]);
+        listOperations[i + 1] = input;
+        listOperations.splice(i - 1, 2);
+        i = 0;
+      }
+    }
+  }
+}
+function operationPlusAndMinus() {
+  for (let i = 0; i < listOperations.length; i++) {
+    if (!Number.isFinite(Number(listOperations[i]))) {
+      if (listOperations[i] === "+") {
+        input = Number(listOperations[i - 1]) + Number(listOperations[i + 1]);
+        listOperations[i + 1] = input;
+      }
+      if (listOperations[i] === "-") {
+        input = Number(listOperations[i - 1]) - Number(listOperations[i + 1]);
+        listOperations[i + 1] = input;
+      }
+    }
+  }
 }
 
 function onOperationButtonClick(eventObject) {
   let clickedElement = eventObject.currentTarget;
   let operation = clickedElement.innerHTML;
-
   makeOperation(operation);
 }
 for (let index = 0; index < allElement.length; index++) {
