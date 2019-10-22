@@ -11,13 +11,13 @@ function makeOperation(operationCode) {
     input = input + operationCode;
     result.value = input;
   } else if (operationCode === "=") {
-    listOperations.push(Number(numbers));
+    listOperations.push(parseFloat(numbers));
     operationMultiplayAndDevide();
     operationPlusAndMinus();
     result.value = input;
     clean();
   } else if (operationCode !== "C") {
-    listOperations.push(Number(numbers));
+    listOperations.push(parseFloat(numbers));
     input = input + operationCode;
     numbers = "";
     listOperations.push(operationCode);
@@ -37,35 +37,36 @@ function operationMultiplayAndDevide() {
   for (let i = 0; i < listOperations.length; i++) {
     if (!Number.isFinite(Number(listOperations[i]))) {
       if (listOperations[i] === "*") {
-        input = Number(listOperations[i - 1]) * Number(listOperations[i + 1]);
-        listOperations[i + 1] = input;
+        input = (listOperations[i - 1] * listOperations[i + 1]).toFixed(8);
+        listOperations[i + 1] = parseFloat(input);
         listOperations.splice(i - 1, 2);
         i = 0;
       }
       if (listOperations[i] === "/") {
-        input = Number(listOperations[i - 1]) / Number(listOperations[i + 1]);
-        listOperations[i + 1] = input;
+        input = (listOperations[i - 1] / listOperations[i + 1]).toFixed(8);
+        listOperations[i + 1] = parseFloat(input);
         listOperations.splice(i - 1, 2);
         i = 0;
       }
     }
+    input = Number(input);
   }
 }
 function operationPlusAndMinus() {
   for (let i = 0; i < listOperations.length; i++) {
     if (!Number.isFinite(Number(listOperations[i]))) {
       if (listOperations[i] === "+") {
-        input = Number(listOperations[i - 1]) + Number(listOperations[i + 1]);
-        listOperations[i + 1] = input;
+        input = (listOperations[i - 1] + listOperations[i + 1]).toFixed(8);
+        listOperations[i + 1] = parseFloat(input);
       }
       if (listOperations[i] === "-") {
-        input = Number(listOperations[i - 1]) - Number(listOperations[i + 1]);
-        listOperations[i + 1] = input;
+        input = (listOperations[i - 1] - listOperations[i + 1]).toFixed(8);
+        listOperations[i + 1] = parseFloat(input);
       }
     }
+    input = Number(input);
   }
 }
-
 function onOperationButtonClick(eventObject) {
   let clickedElement = eventObject.currentTarget;
   let operation = clickedElement.innerHTML;
