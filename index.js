@@ -6,18 +6,18 @@ let listOperations = [];
 let input = "";
 
 function makeOperation(operationCode) {
-  if (Number.isFinite(Number(operationCode))) {
+  if (isFinite(operationCode) || operationCode == ".") {
     numbers = numbers + operationCode;
     input = input + operationCode;
     result.value = input;
   } else if (operationCode === "=") {
-    listOperations.push(parseFloat(numbers));
+    listOperations.push(+(numbers));
     operationMultiplayAndDevide();
     operationPlusAndMinus();
     result.value = input;
     clean();
   } else if (operationCode !== "C") {
-    listOperations.push(parseFloat(numbers));
+    listOperations.push(+(numbers));
     input = input + operationCode;
     numbers = "";
     listOperations.push(operationCode);
@@ -35,36 +35,34 @@ function clean() {
 }
 function operationMultiplayAndDevide() {
   for (let i = 0; i < listOperations.length; i++) {
-    if (!Number.isFinite(Number(listOperations[i]))) {
+    if (!isFinite(listOperations[i])) {
       if (listOperations[i] === "*") {
-        input = (listOperations[i - 1] * listOperations[i + 1]).toFixed(8);
-        listOperations[i + 1] = parseFloat(input);
+        input = +(listOperations[i - 1] * listOperations[i + 1]).toFixed(14);
+        listOperations[i + 1] = input;
         listOperations.splice(i - 1, 2);
         i = 0;
       }
       if (listOperations[i] === "/") {
-        input = (listOperations[i - 1] / listOperations[i + 1]).toFixed(8);
-        listOperations[i + 1] = parseFloat(input);
+        input = +(listOperations[i - 1] / listOperations[i + 1]).toFixed(14);
+        listOperations[i + 1] = input;
         listOperations.splice(i - 1, 2);
         i = 0;
       }
     }
-    input = Number(input);
   }
 }
 function operationPlusAndMinus() {
   for (let i = 0; i < listOperations.length; i++) {
-    if (!Number.isFinite(Number(listOperations[i]))) {
+    if (!isFinite(listOperations[i])) {
       if (listOperations[i] === "+") {
-        input = (listOperations[i - 1] + listOperations[i + 1]).toFixed(8);
-        listOperations[i + 1] = parseFloat(input);
+        input = +(listOperations[i - 1] + listOperations[i + 1]).toFixed(14);
+        listOperations[i + 1] = input;
       }
       if (listOperations[i] === "-") {
-        input = (listOperations[i - 1] - listOperations[i + 1]).toFixed(8);
-        listOperations[i + 1] = parseFloat(input);
+        input = +(listOperations[i - 1] - listOperations[i + 1]).toFixed(14);
+        listOperations[i + 1] = input;
       }
     }
-    input = Number(input);
   }
 }
 function onOperationButtonClick(eventObject) {
