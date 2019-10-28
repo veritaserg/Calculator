@@ -11,13 +11,13 @@ function makeOperation(operationCode) {
     input = input + operationCode;
     result.value = input;
   } else if (operationCode === "=") {
-    listOperations.push(+(numbers));
+    listOperations.push(+numbers);
     operationMultiplayAndDevide();
     operationPlusAndMinus();
     result.value = input;
     clean();
   } else if (operationCode !== "C") {
-    listOperations.push(+(numbers));
+    listOperations.push(+numbers);
     input = input + operationCode;
     numbers = "";
     listOperations.push(operationCode);
@@ -35,36 +35,33 @@ function clean() {
 }
 function operationMultiplayAndDevide() {
   for (let i = 0; i < listOperations.length; i++) {
-    if (!isFinite(listOperations[i])) {
-      if (listOperations[i] === "*") {
-        input = +(listOperations[i - 1] * listOperations[i + 1]).toFixed(14);
-        listOperations[i + 1] = input;
-        listOperations.splice(i - 1, 2);
-        i = 0;
-      }
-      if (listOperations[i] === "/") {
-        input = +(listOperations[i - 1] / listOperations[i + 1]).toFixed(14);
-        listOperations[i + 1] = input;
-        listOperations.splice(i - 1, 2);
-        i = 0;
-      }
+    if (listOperations[i] === "*") {
+      input = +(listOperations[i - 1] * listOperations[i + 1]).toFixed(14);
+      listOperations[i + 1] = input;
+      listOperations.splice(i - 1, 2);
+      i = 0;
+    }
+    if (listOperations[i] === "/") {
+      input = +(listOperations[i - 1] / listOperations[i + 1]).toFixed(14);
+      listOperations[i + 1] = input;
+      listOperations.splice(i - 1, 2);
+      i = 0;
     }
   }
 }
 function operationPlusAndMinus() {
-  for (let i = 0; i < listOperations.length; i++) {
-    if (!isFinite(listOperations[i])) {
-      if (listOperations[i] === "+") {
-        input = +(listOperations[i - 1] + listOperations[i + 1]).toFixed(14);
-        listOperations[i + 1] = input;
-      }
-      if (listOperations[i] === "-") {
-        input = +(listOperations[i - 1] - listOperations[i + 1]).toFixed(14);
-        listOperations[i + 1] = input;
-      }
+  listOperations.forEach((element, i, lists) => {
+    if (element === "+") {
+      input = +(lists[i - 1] + lists[i + 1]).toFixed(14);
+      lists[i + 1] = input;
     }
-  }
+    if (element === "-") {
+      input = +(lists[i - 1] - lists[i + 1]).toFixed(14);
+      lists[i + 1] = input;
+    }
+  });
 }
+
 function onOperationButtonClick(eventObject) {
   let clickedElement = eventObject.currentTarget;
   let operation = clickedElement.innerHTML;
