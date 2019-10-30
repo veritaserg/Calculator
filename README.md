@@ -6,7 +6,7 @@
 - multifunctional calculations with the correct order
 - function the ability to delete values ​​during operation
 - the ability to make calculations with the result
-- accuracy to one hundred trillion decimal places
+- accuracy to one hundredth trillion
 
 
 [![calculator.png](https://i.postimg.cc/zGPChzJs/calculator.png)](https://postimg.cc/bZkScjSg)
