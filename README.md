@@ -1,6 +1,9 @@
-#CALCULATOR
+# CALCULATOR
 
+## Features!
 
+- 
+-
+-
+-
 
-
-https://github.com/veritaserg/Calculator/blob/master/inde.html
