@@ -8,3 +8,5 @@
 - the ability to calculate with the result
 
 
+![alt text](calculator.png)
+
