@@ -8,5 +8,5 @@
 - the ability to calculate with the result
 
 
-![alt text](calculator.png)
+[![calculator.png](https://i.postimg.cc/zGPChzJs/calculator.png)](https://postimg.cc/bZkScjSg)
 
